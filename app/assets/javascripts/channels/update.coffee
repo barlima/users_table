@@ -11,7 +11,20 @@ App.update = App.cable.subscriptions.create "UpdateChannel",
         <td>#{data['last_name']}</td>
         <td>#{data['first_name']}</td>
         <td>#{data['email']}</td>
+        <td><a href=\"/users/#{data['id']}\">Show</a></td>
       </tr>"
+    )
+
+    $("#first_name_#{data['id']}").html(
+      "<strong>First name:</strong> #{data['first_name']}"
+    )
+
+    $("#last_name_#{data['id']}").html(
+      "<strong>Last name:</strong> #{data['last_name']}"
+    )
+
+    $("#email_#{data['id']}").html(
+      "<strong>Email:</strong> #{data['email']}"
     )
 
   update: (id, first_name, last_name, email) ->

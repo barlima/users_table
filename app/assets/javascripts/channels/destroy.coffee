@@ -7,6 +7,9 @@ App.destroy = App.cable.subscriptions.create "DestroyChannel",
 
   received: (data) ->
     $("##{data['id']}").remove()
+    $("#first_name_#{data['id']}").remove()
+    $("#last_name_#{data['id']}").remove()
+    $("#email_#{data['id']}").remove()
 
   destroy: (id) ->
     @perform 'destroy', id: id

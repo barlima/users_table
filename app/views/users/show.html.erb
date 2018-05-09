@@ -1,16 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<p id=<%="first_name_#{@user.id}"%>>
   <strong>First name:</strong>
   <%= @user.first_name %>
 </p>
 
-<p>
+<p id=<%="last_name_#{@user.id}"%>>
   <strong>Last name:</strong>
   <%= @user.last_name %>
 </p>
 
-<p>
+<p id=<%="email_#{@user.id}"%>>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
