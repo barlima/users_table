@@ -163,7 +163,9 @@ test:
 production:
   clients:
     default:
-      uri: &lt;%= ENV['MONGODB_URI'] %&gt;
+      uri: <%= ENV['MONGODB_URI'] %>;
     options:
+      database: users_table
+      hosts: localhost:27017
       skip_version_check: true
-    safe: true
+      safe: true
