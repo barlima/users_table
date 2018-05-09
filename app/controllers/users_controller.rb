@@ -20,6 +20,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        data = user_params.merge({id: @user.id.to_s})
+        ActionCable.server.broadcast 'create_channel', data
+
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -32,6 +35,9 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        data = user_params.merge({id: @user.id.to_s})
+        ActionCable.server.broadcast 'update_channel', data
+
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -51,11 +57,11 @@ class UsersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email)
+  end
 end
