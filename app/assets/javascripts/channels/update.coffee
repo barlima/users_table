@@ -6,7 +6,6 @@ App.update = App.cable.subscriptions.create "UpdateChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    alert "#{data['id']}"
     $("##{data['id']}").replaceWith(
       "<tr id=#{data['id']}>
         <td>#{data['last_name']}</td>

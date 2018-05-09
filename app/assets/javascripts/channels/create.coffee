@@ -11,6 +11,7 @@ App.create = App.cable.subscriptions.create "CreateChannel",
         <td>#{data['first_name']}</td>
         <td>#{data['last_name']}</td>
         <td>#{data['email']}</td>
+        <td><a href=\"/users/#{data['id']}\">Show</a></td>
       </tr>"
     )
 

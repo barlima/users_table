@@ -48,7 +48,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    data = {id: @user.id.to_s}
     @user.destroy
+    ActionCable.server.broadcast 'destroy_channel', data
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
