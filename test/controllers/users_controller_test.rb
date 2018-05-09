@@ -1,8 +1,24 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  # fixtures :users
+
   setup do
-    @user = users(:one)
+    @user = User.create!(
+      first_name: "Adam",
+      last_name: "Williams",
+      email: "adam@williams.com"
+    )
+
+    @new_user = {
+      first_name: "John",
+      last_name: "Adams",
+      email: "john@adams.com"
+    }
+  end
+
+  teardown do
+    User.each{ |u| u.destroy }
   end
 
   test "should get index" do
@@ -17,7 +33,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference('User.count') do
-      post users_url, params: { user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name } }
+      post users_url, params: { user: { email: @new_user[:email], first_name: @new_user[:first_name], last_name: @new_user[:last_name] } }
     end
 
     assert_redirected_to user_url(User.last)
@@ -34,7 +50,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    patch user_url(@user), params: { user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name } }
+    patch user_url(@user), params: { user: { email: @user[:email], first_name: @user[:first_name], last_name: @user[:last_name] } }
     assert_redirected_to user_url(@user)
   end
 

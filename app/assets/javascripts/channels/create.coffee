@@ -8,8 +8,8 @@ App.create = App.cable.subscriptions.create "CreateChannel",
   received: (data) ->
     $('#users').append(
       "<tr id=#{data['id']}>
-        <td>#{data['first_name']}</td>
         <td>#{data['last_name']}</td>
+        <td>#{data['first_name']}</td>
         <td>#{data['email']}</td>
         <td><a href=\"/users/#{data['id']}\">Show</a></td>
       </tr>"
