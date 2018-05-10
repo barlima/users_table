@@ -2,7 +2,7 @@
 
 <h1>Users</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th><%= sortable "last_name"%></th>
     <th><%= sortable "first_name"%></th>
@@ -16,4 +16,4 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_path, class: 'new-usr-button btn btn-primary btn-info text-center' %>
